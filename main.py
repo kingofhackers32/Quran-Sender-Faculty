@@ -1,7 +1,8 @@
 import requests
-from datetime import datetime ,timedelta
+from datetime import datetime
 import pandas as pd
 import time
+import pytz
 from openpyxl import load_workbook
 
 Bot_Token = "5260912354:AAGyOqFjyo38L9HZe1IBSxrCR05DCsNxOdg"
@@ -17,9 +18,21 @@ Grade_1_Path = "Grade_1/"
 Grade_2_Path = "Grade_2/"
 Grade_3_Path = "Grade_3/"
 Grade_4_Path = "Grade_4/"
+Test_Group_Id = "@khaledsalah3"
+
+def Caption_Text():
+  return f"الورد اليومي للقران الكريم بتاريخ : {Getnowdate()}"
+
+def SendTest():
+  global Message_Sent_Status
+  global LastDate_Sent
+  RespnseSend = requests.post(f"https://api.telegram.org/bot{Bot_Token}/sendmessage?chat_id={Test_Group_Id}&text={Caption_Text()}")
+  print(RespnseSend.status_code)
+  Message_Sent_Status = True
+  LastDate_Sent = Getnowdate()
 
 def Getnowdate():
-    return datetime.now().strftime(f"%d,%m,%Y")
+    return datetime.now(pytz.timezone("Africa/Cairo")).strftime(f"%d,%m,%Y")
 
 def SaveMessageId( MessageId , SheetIndex , DayLineNum ):
     book = load_workbook("Schedule_Info.xlsx")
@@ -110,8 +123,9 @@ while True:
             Open_Schedule_Info_Excel(SheetName = "Grade_2" , SheetIndex=  1 )  
             Open_Schedule_Info_Excel(SheetName = "Grade_3" , SheetIndex=  2 )   
             Open_Schedule_Info_Excel(SheetName = "Grade_4" , SheetIndex=  3 )  
-            
-        #time.sleep(21600)
+            SendTest()
+
+        time.sleep(1) #21600
 
     except:
         pass
