@@ -50,7 +50,7 @@ def SendMessage(Message_Param , SheetIndex , LastMessageId , DayLineNum  ):
 
         if (SheetIndex == 0):
             Files = {'photo':open(f'{Grade_1_Path + Message_Param}',"rb")}
-            RespnseSend = requests.post(f"https://api.telegram.org/bot{Bot_Token}/sendphoto?chat_id={Grade_1_Group_Id}&caption=الورد اليومي للقران الكريم",files=Files)
+            RespnseSend = requests.post(f"https://api.telegram.org/bot{Bot_Token}/sendphoto?chat_id={Grade_1_Group_Id}&caption={Caption_Text()}",files=Files)
             RespnseDelete = requests.post(f"https://api.telegram.org/bot{Bot_Token}/deletemessage?chat_id={Grade_1_Group_Id}&message_id={LastMessageId}")
             print(f"Quran Page Of Date : {Getnowdate()} Has Been Sent And Response Status Is : {RespnseSend.status_code}")
             print(f"Quran Page Of Date : {LastDate_Sent} Has Been Deleted And Response Status Is : {RespnseDelete.status_code}")
@@ -58,7 +58,7 @@ def SendMessage(Message_Param , SheetIndex , LastMessageId , DayLineNum  ):
             SaveMessageId(MessageId , SheetIndex , DayLineNum  )
         elif (SheetIndex == 1):
             Files = {'photo':open(f'{Grade_2_Path + Message_Param}',"rb")}
-            RespnseSend = requests.post(f"https://api.telegram.org/bot{Bot_Token}/sendphoto?chat_id={Grade_2_Group_Id}&caption=الورد اليومي للقران الكريم",files=Files)
+            RespnseSend = requests.post(f"https://api.telegram.org/bot{Bot_Token}/sendphoto?chat_id={Grade_2_Group_Id}&caption={Caption_Text()}",files=Files)
             RespnseDelete = requests.post(f"https://api.telegram.org/bot{Bot_Token}/deletemessage?chat_id={Grade_2_Group_Id}&message_id={LastMessageId}")
             print(f"Quran Page Of Date : {Getnowdate()} Has Been Sent And Response Status Is : {RespnseSend.status_code}")
             print(f"Quran Page Of Date : {LastDate_Sent} Has Been Deleted And Response Status Is : {RespnseDelete.status_code}")
@@ -66,7 +66,7 @@ def SendMessage(Message_Param , SheetIndex , LastMessageId , DayLineNum  ):
             SaveMessageId(MessageId , SheetIndex , DayLineNum  )
         elif (SheetIndex == 2):
             Files = {'photo':open(f'{Grade_3_Path + Message_Param}',"rb")}
-            RespnseSend = requests.post(f"https://api.telegram.org/bot{Bot_Token}/sendphoto?chat_id={Grade_3_Group_Id}&caption=الورد اليومي للقران الكريم",files=Files)
+            RespnseSend = requests.post(f"https://api.telegram.org/bot{Bot_Token}/sendphoto?chat_id={Grade_3_Group_Id}&caption={Caption_Text()}",files=Files)
             RespnseDelete = requests.post(f"https://api.telegram.org/bot{Bot_Token}/deletemessage?chat_id={Grade_3_Group_Id}&message_id={LastMessageId}")
             print(f"Quran Page Of Date : {Getnowdate()} Has Been Sent And Response Status Is : {RespnseSend.status_code}")
             print(f"Quran Page Of Date : {LastDate_Sent} Has Been Deleted And Response Status Is : {RespnseDelete.status_code}")
@@ -74,7 +74,7 @@ def SendMessage(Message_Param , SheetIndex , LastMessageId , DayLineNum  ):
             SaveMessageId(MessageId , SheetIndex , DayLineNum  )
         elif (SheetIndex == 3):
             Files = {'photo':open(f'{Grade_4_Path + Message_Param}',"rb")}
-            RespnseSend = requests.post(f"https://api.telegram.org/bot{Bot_Token}/sendphoto?chat_id={Grade_4_Group_Id}&caption=الورد اليومي للقران الكريم",files=Files)
+            RespnseSend = requests.post(f"https://api.telegram.org/bot{Bot_Token}/sendphoto?chat_id={Grade_4_Group_Id}&caption={Caption_Text()}",files=Files)
             RespnseDelete = requests.post(f"https://api.telegram.org/bot{Bot_Token}/deletemessage?chat_id={Grade_4_Group_Id}&message_id={LastMessageId}")
             print(f"Quran Page Of Date : {Getnowdate()} Has Been Sent And Response Status Is : {RespnseSend.status_code}")
             print(f"Quran Page Of Date : {LastDate_Sent} Has Been Deleted And Response Status Is : {RespnseDelete.status_code}")
@@ -123,9 +123,9 @@ while True:
             Open_Schedule_Info_Excel(SheetName = "Grade_2" , SheetIndex=  1 )  
             Open_Schedule_Info_Excel(SheetName = "Grade_3" , SheetIndex=  2 )   
             Open_Schedule_Info_Excel(SheetName = "Grade_4" , SheetIndex=  3 )  
-            SendTest()
+            #SendTest()
 
-        time.sleep(1) #21600
+        time.sleep(60) #21600
 
     except:
         pass
